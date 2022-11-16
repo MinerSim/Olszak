@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>McPlayHD.net</title>
+    <!-- META information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="McPlayHD, McPlayHD, McPlayHD, McPlayHD.net, McPlay, Server, Minecraft, Bridging, Server, Bridging Server" />
+
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style6.css" type='text/css'>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" type='text/css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" type='text/css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:800" type='text/css'>
+    <script>
+        function createInfos() {
+            setInterval(function() {
+                const rawFile0 = new XMLHttpRequest();
+                const obj0 = document.getElementById("online");
+                rawFile0.open('GET', 'Source/online.txt', true);
+                rawFile0.onreadystatechange = function() {
+                    if (rawFile0.readyState === 4) {
+                        if (rawFile0.status === 200 || rawFile0.status === 0) {
+                            obj0.innerHTML = rawFile0.responseText;
+                        }
+                    }
+                }
+                rawFile0.send(null);
+                const rawFile = new XMLHttpRequest();
+                rawFile.open('GET', 'Source/stats.txt', true);
+                rawFile.onreadystatechange = function() {
+                    if (rawFile.readyState === 4) {
+                        if (rawFile.status === 200 || rawFile.status === 0) {
+                            const str = rawFile.responseText;
+                            const res = str.split("\n");
+                            document.getElementById("month").innerHTML = res[0];
+                            document.getElementById("fbrounds").innerHTML = res[1];
+                            document.getElementById("qcshots").innerHTML = res[2];
+                            document.getElementById("slpages").innerHTML = res[3];
+                            document.getElementById("cdcakes").innerHTML = res[4];
+                            document.getElementById("minestats").innerHTML = res[5];
+                            document.getElementById("bwstats").innerHTML = res[6];
+                        }
+                    }
+                }
+                rawFile.send(null);
+            }, 500);
+        }
+
+        function createMonthName(divID) {
+            const monthNames = ["January", "February", "March", "April", "Mai", "June",
+                "July", "August", "September", "October", "November", "December"
+            ];
+            const d = new Date();
+            const obj = document.getElementById(divID);
+            obj.innerHTML = "players in the month of " + monthNames[d.getMonth()];
+        }
+        const copyToClipboard = str => {
+            const el = document.createElement('textarea'); // Create a <textarea> element
+            el.value = str; // Set its value to the string that you want copied
+            el.setAttribute('readonly', ''); // Make it readonly to be tamper-proof
+            el.style.position = 'absolute';
+            el.style.left = '-9999px'; // Move outside the screen to make it invisible
+            document.body.appendChild(el); // Append the <textarea> element to the HTML document
+            const selected =
+                document.getSelection().rangeCount > 0 // Check if there is any content selected previously
+                ?
+                document.getSelection().getRangeAt(0) // Store selection if found
+                :
+                false; // Mark as false to know no selection existed before
+            el.select(); // Select the <textarea> content
+            document.execCommand('copy'); // Copy - only works as a result of a user action (e.g. click events)
+            document.body.removeChild(el); // Remove the <textarea> element
+            if (selected) { // If a selection existed before copying
+                document.getSelection().removeAllRanges(); // Unselect everything on the HTML document
+                document.getSelection().addRange(selected); // Restore the original selection
+            }
+        };
+    </script>
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-62991062-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+
+
+<body>
+
+    <!-- Top section -->
+    <div class="top fullscreen background parallax" id="top" style="background-image:url('images/background.jpg');" data-img-width="1920" data-img-height="1080" data-diff="250">
+        <div class="content-a">
+            <div class="overlay"></div>
+            <div class="content-b">
+                <div class="dark-line">
+                    <h1>McPlayHD.net</h1>
+                    <p>A small minecraft network with big plans for the future</p>
+                </div>
+                <div class="arrows"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-content">
+        <nav class="navbar navbar-static-top">
+            <div class="container">
+                <!-- Toggle icon for responsive design -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" style="width:inherit">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+                </div>
+                <!-- Change your links here -->
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-center">
+                        <li><a href="#top">Home</a></li>
+                        <li><a href="#about">Portrait</a></li>
+                        <li><a href="#server">Server</a></li>
+                        <li><a href="#games">Minigames</a></li>
+                        <li><a href="#kontakt">Contact</a></li>
+                        <li><a href="https://store.mcplayhd.net/">Shop</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- About section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h3>We are the McPlayHD network</h3>
+            <div class="divider">
+                <div class="hr">
+                    <div class="hr-dot"></div>
+                </div>
+            </div>
+            <h4>Visit us on McPlayHD.net</h4>
+            <div class="col-md-4 about-item">
+                <i class="fa fa-cog fa-2x"></i>
+                <div class="col-content">
+                    <h5>Own minigames</h5>
+                    <p>On our network we present to you our self-programmed minigames. We strive towards improving your experience playing other games by allowing to train certain skills while also providing you with a small range of competitive games. We
+                        are always working in the background to either make new games or improve already existing ones.</p>
+                </div>
+            </div>
+            <div class="col-md-4 about-item">
+                <i class="fa fa-users fa-2x"></i>
+                <div class="col-content">
+                    <h5>Our staff team</h5>
+                    <p>The most important thing is that everyone feels well on the server. Each and every member of our team is chosen carefully in order to manage an ever-growing community. Depending on the role of the staff member, they will build maps,
+                        develop plugins, help out players or punish rule-breakers.</p>
+                </div>
+            </div>
+            <div class="col-md-4 about-item">
+                <i class="fa fa-hdd-o fa-2x"></i>
+                <div class="col-content">
+                    <h5>Great servers</h5>
+                    <p>We try to keep our servers updated and in good shape in order to deliver a lag-free experience. Servers are currently hosted in Germany but this should not bother players from other destinations too much.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Number counter section -->
+    <div>
+        <section class="not-fullscreen background parallax counter" id="server" style="margin-bottom:20px; min-height:75%; background-image:url('images/counter_bg.png');" data-img-width="1600" data-img-height="1064" data-diff="500">
+            <div class="content-a">
+                <div class="content-b">
+                    <div class="overlay"></div>
+                    <div class="container">
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-3">
+                            <span class="counter-number white" id="online">NoScript</span>
+                            <span class="white counter-text">players online</span>
+                        </div>
+                        <div class="col-md-3">
+                            <span class="counter-number white" id="month">NoScript</span>
+                            <span class="white counter-text" id="mname">NoScript</span>
+                            <script>
+                                createMonthName('mname');
+                            </script>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="divider">
+                            <div class="hr">
+                                <div class="hr-dot"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <span class="counter-number white" id="fbrounds">NoScript</span>
+                            <span class="white counter-text">FastBuilder rounds played</span>
+                        </div>
+                        <div class="col-md-3">
+                            <span class="counter-number white" id="cdcakes">NoScript</span>
+                            <span class="white counter-text">pieces of cake eaten in CakeDefense</span>
+                        </div>
+                        <div class="col-md-3">
+                            <span class="counter-number white" id="qcshots">NoScript</span>
+                            <span class="white counter-text">shots fired in Quakecraft</span>
+                        </div>
+                        <div class="col-md-3">
+                            <span class="counter-number white" id="slpages">NoScript</span>
+                            <span class="white counter-text">pages found in Slender</span>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-3" style="margin-bottom:20px">
+                            <span class="counter-number white" id="bwstats">NoScript</span>
+                            <span class="white counter-text">broken beds in BedWars</span>
+                        </div>
+                        <div class="col-md-3" style="margin-bottom:20px">
+                            <span class="counter-number white" id="minestats">NoScript</span>
+                            <span class="white counter-text">defused mines in Minesweeper</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+    <!-- Team section -->
+    <section class="team">
+        <div class="container">
+            <h3>Server staff</h3>
+            <div class="divider">
+                <div class="hr">
+                    <div class="hr-dot"></div>
+                </div>
+            </div>
+            <h4 class="bold">Leading team</h4>
+            <div class="col-md-2">
+                <h5 class="bold">McPlayHD</h5>
+                <img src="images/skins/McPlayHD.png" alt="McPlayHD" style="border-radius:10px">
+                <h6 class="bold">Owner</h6>
+            </div>
+            <div class="col-md-2">
+                <h5 class="bold">FireBladeHunter</h5>
+                <img src="images/skins/FireBladeHunter.png" alt="FireBladeHunter" style="border-radius:10px">
+                <h6 class="bold">Admin</h6>
+            </div>
+            <div class="col-md-2">
+                <h5 class="bold">Achsion</h5>
+                <img src="images/skins/Achsion.png" alt="Achsion" style="border-radius:10px">
+                <h6 class="bold">Developer</h6>
+            </div>
+            <div class="col-md-2">
+                <h5 class="bold">Worldgenerator</h5>
+                <img src="images/skins/Worldbuilder777.png" alt="Worldgenerator" style="border-radius:10px">
+                <h6 class="bold">Head-Builder</h6>
+            </div>
+        </div>
+        <div class="divider">
+            <div class="hr">
+                <div class="hr-dot"></div>
+            </div>
+        </div>
+        <div class="container">
+            <h4 class="bold">Moderators</h4>
+            <div class="col-md-2">
+                <h5 class="bold">threeseconds</h5>
+                <img src="images/skins/threeseconds.png" alt="threeseconds" style="border-radius:10px">
+                <h6 class="bold">Moderator</h6>
+            </div>
+            <div class="col-md-2">
+                <h5 class="bold">thisisunknxwn</h5>
+                <img src="images/skins/thisisunknxwn.png" alt="thisisunknxwn" style="border-radius:10px">
+                <h6 class="bold">Moderator</h6>
+            </div>
+            <div class="col-md-2">
+                <h5 class="bold">YellowXD</h5>
+                <img src="images/skins/YellowXD.png" alt="YellowXD" style="border-radius:10px">
+                <h6 class="bold">Moderator</h6>
+            </div>
+            <div class="col-md-2">
+                <h5 class="bold">CH0RD</h5>
+                <img src="images/skins/CH0RD.png" alt="CH0RD" style="border-radius:10px">
+                <h6 class="bold">Moderator</h6>
+            </div>
+            <div class="col-md-2">
+                <h5 class="bold">flxr</h5>
+                <img src="images/skins/flxr.png" alt="flxr" style="border-radius:10px">
+                <h6 class="bold">Moderator</h6>
+            </div>
+            <div class="col-md-2">
+                <h5 class="bold">Scored_</h5>
+                <img src="images/skins/Scored_.png" alt="Scored_" style="border-radius:10px">
+                <h6 class="bold">Moderator</h6>
+            </div>
+            <div class="col-md-2">
+                <h5 class="bold">leonxd</h5>
+                <img src="images/skins/leonxd.png" alt="leonxd" style="border-radius:10px">
+                <h6 class="bold">Moderator</h6>
+            </div>
+            <div class="col-md-2">
+                <h5 class="bold">Superbalou</h5>
+                <img src="images/skins/Superbalou.png" alt="Superbalou" style="border-radius:10px">
+                <h6 class="bold">Junior Moderator</h6>
+            </div>
+        </div>
+        <div class="divider">
+            <div class="hr">
+                <div class="hr-dot"></div>
+            </div>
+        </div>
+        <div class="container">
+            <h4 class="bold">Helpers</h4>
+
+            <div class="col-md-2">
+                <h5 class="bold">stupxd</h5>
+                <img src="images/skins/stupxd.png" alt="stupxd" style="border-radius:10px">
+                <h6 class="bold">Helper</h6>
+            </div>
+            <div class="col-md-2">
+                <h5 class="bold">fixca</h5>
+                <img src="images/skins/fixca.png" alt="fixca" style="border-radius:10px">
+                <h6 class="bold">Helper</h6>
+            </div>
+            <div class="col-md-2">
+                <h5 class="bold">ClutchCps</h5>
+                <img src="images/skins/ClutchCps.png" alt="ClutchCps" style="border-radius:10px">
+                <h6 class="bold">Junior Helper</h6>
+            </div>
+            <div class="col-md-2">
+                <h5 class="bold">Johnlongears</h5>
+                <img src="images/skins/Johnlongears.png" alt="Johnlongears" style="border-radius:10px">
+                <h6 class="bold">Junior Helper</h6>
+            </div>
+            <div class="col-md-2">
+                <h5 class="bold">Skifff</h5>
+                <img src="images/skins/Skifff.png" alt="Skifff" style="border-radius:10px">
+                <h6 class="bold">Junior Helper</h6>
+            </div>
+            <div class="col-md-2">
+                <h5 class="bold">steez</h5>
+                <img src="images/skins/steez.png" alt="steez" style="border-radius:10px">
+                <h6 class="bold">Junior Helper</h6>
+            </div>
+            
+        </div>
+        <div class="divider">
+            <div class="hr">
+                <div class="hr-dot"></div>
+            </div>
+        </div>
+        <div class="container">
+            <h4 class="bold">Builders</h4>
+            <div class="col-md-2">
+                <h5 class="bold">unproud</h5>
+                <img src="images/skins/unproud.png" alt="unproud" style="border-radius:10px">
+                <h6 class="bold">Builder</h6>
+            </div>
+            <div class="col-md-2">
+                <h5 class="bold">Redignatz</h5>
+                <img src="images/skins/Redignatz.png" alt="Redignatz" style="border-radius:10px">
+                <h6 class="bold">Junior Builder</h6>
+            </div>
+            <div class="col-md-2">
+                <h5 class="bold">BradyXD</h5>
+                <img src="images/skins/BradyXD.png" alt="BradyXD" style="border-radius:10px">
+                <h6 class="bold">Junior Builder</h6>
+            </div>
+        </div>
+    </section>
+
+    <!-- Action bar -->
+    <section class="action-bar dark" id="section-bar-2">
+        <div class="container">
+            <div class="col-md-8">
+                <h3 class="small dark">Like? Join us now!</h3>
+            </div>
+            <div class="col-md-4">
+                <div class="button button-dark">
+                    <span class="button-text"><a href="javascript:copyToClipboard('McPlayHD.net')">IP: McPlayHD.net</a></span>
+                </div>
+            </div>
+        </div>
+        <!--
+    <div class="container">
+        <div class="col-centered">
+            <iframe src="https://de.namemc.com/server/mcplayhd.net/embed" width="728" height="90" style="border:none;display:block;outline:none"></iframe>
+        </div>
+    </div>
+    -->
+    </section>
+
+    <!-- Servers section -->
+    <section class="servers" id="games" style="background-color: #F5F5F5;">
+        <div class="container">
+            <h3>Our minigames</h3>
+            <div class="divider">
+                <div class="hr">
+                    <div class="hr-dot"></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <img src="images/fastbuilder.png" alt="FastBuilder">
+                <h4 class="bold">FastBuilder</h4>
+                <p>Being our most famous mode, it allows you to improve your bridging skills. Originally invented by TROOP3R and McPlayHD in order to better their own ninja bridging, it now helps thousands of players a day to get to the opponent's beds faster.
+                    Several new bridging techniques have been invented by our community on our server and more have yet to come.</p>
+            </div>
+            <div class="col-md-4">
+                <img src="images/quakecraft.png" alt="Quakecraft">
+                <h4 class="bold">Quakecraft</h4>
+                <p>Quakecraft is one of the first shooters to be implemented in Minecraft by the Hypixel Network. Equipped with a railgun your goal is to reach more kills than anyone else in a FFA mode. Originally, back in 2013 the server's only gamemode
+                    was Quakecraft for quite some time.</p>
+            </div>
+            <div class="col-md-4">
+                <img src="images/slender.png" alt="Slender">
+                <h4 class="bold">Slender</h4>
+                <p>Slender is a well-known horror game. The goal is to survive the onslaught of the Slenderman. Eight pages are hidden at midnight and finding all of them will break the curse. The Slenderman is equipped with a bloodstained axe which he has
+                    to infuse with power by staring down his innocent victims.</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="col-md-4">
+                <img src="images/bedwars.png" alt="BedWars">
+                <h4 class="bold">BedWars</h4>
+                <p>BedWars is a fully automatic version of the original map Rush. BedWars became well known thanks to the server GommeHD.net and is playable on many other servers. The goal of the game is to destroy everyone else's bed so they can no longer
+                    respawn and then kill them all.</p>
+            </div>
+            <div class="col-md-4">
+                <img src="images/cakedefense.png" alt="CakeDefense">
+                <h4 class="bold">CakeDefense</h4>
+                <p>CakeDefense is a game all about eating that cake. In order to eat your opponent's cake, you have to stand on top of it. Devouring all seven pieces of the cake will prevent your enemies from further respawning and you can finally eliminate
+                    them.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <img src="images/minesweeper.png" alt="Minesweeper">
+                <h4 class="bold">Minesweeper</h4>
+                <p>Minesweeper is probably the best known Windows XP system game which is a logic game with the goal of defusing a minefield without letting it explode. Stepping on a field will reveal information about how many adjacent fields are rigged
+                    to explode. With this information you can solve most minefields and successfully defuse all mines.</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="col-md-4">
+                <img src="images/snowbattle.png" alt="Snowbattle">
+                <h4 class="bold">Snowbattle</h4>
+                <p>Snowbattle delivers completely on its name. You and your friends try to eliminate your opposing team by landing successful hits with a snowball. These snowballs can be obtained by breaking layers of snow. The first team to win five rounds
+                    of snowball fights will win the game and return to their home victoriously.</p>
+            </div>
+            <div class="col-md-4">
+                <img src="images/moorhuhn.png" alt="Moorhuhn">
+                <h4 class="bold">Moorhuhn</h4>
+                <p>Originally a CD game for Windows XP, Moorhuhn now allows you to train your bow accuracy. Equipped with a bow and arrow, your goal is to shoot as many chickens in 90 seconds as possible whilst only being able to turn around your own axis.</p>
+            </div>
+
+            <!--
+
+			--- TO:DO (Versus) ---
+			- gud image
+			- gud text 
+
+		-->
+        </div>
+    </section>
+
+
+    <!-- Number counter section -->
+    <section class="not-fullscreen background parallax counter" id="kontakt" style="background-image:url('images/bottom_bg.png');" data-img-width="1600" data-img-height="1064" data-diff="500">
+        <div class="content-a">
+            <div class="content-b">
+                <div class="overlay"></div>
+                <div class="container" style="height:50%">
+                    <div class="col-xs-6">
+                        <span class="counter-number white">Discord</span>
+                        <div style="width:48px; margin:auto;">
+                            <a href="https://mcplayhd.net/discord">
+                                <img width="245" src="images/discord.png" alt="Discord" />
+                            </a>
+                        </div>
+                        <span class="white counter-text" style="margin-top:0">http://mcplayhd.net/discord</span>
+                    </div>
+                    <div class="col-xs-6">
+                        <span class="counter-number white">Roadmap</span>
+                        <div style="width:48px; margin:auto;">
+                            <a href="https://mcplayhd.net/roadmap">
+                                <img width="48" src="images/roadmap.png" alt="Roadmap" />
+                            </a>
+                        </div>
+                        <span class="white counter-text" style="margin-top:0">https://McPlayHD.net/roadmap</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom section -->
+    <section class="bottom dark">
+        <div class="container">
+            <div class="bottom-content">
+                <span class="ip">McPlayHD.net</span>
+                <span class="server-name">McPlayHD Network</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner Section -->
+    <section class="parter">
+        <div class="container">
+            <h3>Partner</h3>
+            <div class="divider">
+                <div class="hr">
+                    <div class="hr-dot"></div>
+                </div>
+            </div>
+
+            <div class="partner">
+                <div class="col-md-12">
+                    <h5 class="bold">LabyMod</h5>
+                    <a href="https://www.labymod.net">
+                        <img src="images/labymod.png" alt="LabyMod">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="dark">
+        <div class="container">
+            <span class="copyright">Design by <b>Iviza Designs</b></span>
+            <ul>
+                <li><a href="#top">Home</a></li>
+                <li><a href="#about">Portrait</a></li>
+                <li><a href="#server">Server</a></li>
+                <li><a href="#games">Minigames</a></li>
+                <li><a href="#kontakt">Contact</a></li>
+                <li><a href="/rules/">Rules</a></li>
+                <li><a href="https://store.mcplayhd.net/">Shop</a></li>
+                <li><a href="impressum.html">Impressum</a></li>
+                <li><a href="datenschutz.html">Datenschutz</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- jQuery Version 1.10.2 -->
+    <script src="js/jquery-1.10.2.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
+
+    <script>
+        createInfos();
+    </script>
+
+</body>
+
+</html>
